@@ -1,7 +1,7 @@
 import random
 import time
 
-# Crea el cromosoma inicial con 100 números binarios aleatorios de 6 genes
+# Crea el cromosoma inicial con 100 números binarios aleatorios de 10 genes
 
 def cromosomas ():
 
@@ -217,6 +217,8 @@ def seleccion ():
             b = "{:.10f}".format(b)
 
     indice = listaProbabilidades.index (seleccionClasificacion)
+    
+     # Se hace cada paso para obtener el cromosoma (seleccionado y número paso)
 
     y = int (valoresNuevaProb [indice])
     seleccionadoP1 = (99 - y)+2
@@ -230,6 +232,8 @@ def seleccion ():
 
     numeroS = bin(seleccionadoP6)
     numeroS = format(seleccionadoP6, 'b')
+    
+    # Se generaliza que cada cromosoma tenga 10 genes
 
     if len (numeroS) == 1:
         numeroS = "0"+"0"+"0"+"0"+"0"+"0"+"0"+"0"+"0"+numeroS
@@ -255,6 +259,8 @@ def seleccion ():
     for i in range (10):
         numeroSX = numeroS [i]
         numeroS [i] = int (numeroSX)
+        
+    # Se obtiene el cromosoma de la lista inicial
 
     cromosomaS = cromosomaInicial.index (numeroS)
     cromosomaSeleccionado = cromosomaInicial [cromosomaS]
@@ -276,6 +282,8 @@ def algoritmoGenetico():
     funcion ()
     aptitud ()
     seleccion ()
+    
+    # Añade 1 cromosoma a la nueva población y se repite
 
     for i in range (100):
         nuevaPoblacion.append (cromosomaSeleccionado)
@@ -284,7 +292,9 @@ def algoritmoGenetico():
         funcion ()
         aptitud ()
         seleccion ()
-
+        
+    # Se cruzan aleatoriamente 10 genes entre todos los cromosomas)
+    
     for j in range (10):
         nCruce1 = random.randrange (1,100)
         nCruce2 = random.randrange (0,9)
@@ -296,7 +306,7 @@ def algoritmoGenetico():
     print ()
     time.sleep(0.5)
 
-# Se repite el algoritmo hasta que supere determinado umbral de aptitud
+# Se repite el algoritmo por 200 iteraciones
 
 def funcionamiento ():
 
@@ -311,6 +321,8 @@ def funcionamiento ():
     while prueba < 200:
         algoritmoGenetico ()
         prueba += 1
+    
+    # Se elige el mejor cromosoma al finalizar las 200 iteraciones
         
     if prueba == 200:
         
@@ -373,6 +385,8 @@ def funcionamiento ():
 
         for j in range (10):
             cromosomaFinal = "".join(cromosomaSeleccionado)
+        
+        # Se imprime el mejor cromosoma como respuesta
 
         print ("El cromosoma " + cromosomaFinal + " posee la mejor aptitud para solucionar el problema.")
         print ()
